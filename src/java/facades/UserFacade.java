@@ -1,38 +1,119 @@
 package facades;
 
 import entity.User;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 public class UserFacade {
-  
-  private final  Map<String, User> users = new HashMap<>();
 
-  public UserFacade() {
-    //Test Users
-    User user = new User("user","test");
-    user.addRole("User");
-    users.put(user.getUserName(),user );
-    User admin = new User("admin","test");
-    admin.addRole("Admin");
-    users.put(admin.getUserName(),admin);
+    private EntityManagerFactory emf;
+
+    public UserFacade() {
+        emf = Persistence.createEntityManagerFactory("CA3PU");
+    }
+
+    private EntityManager getEntityManager() {
+        return emf.createEntityManager();
+    }
+
+    /*
+     Return the Roles if users could be authenticated, otherwise null
+     */
+    public List<String> authenticateUser(String userName, String password) {
+        User user = getUserByUserName(userName);
+        if (user == null) {
+            return null;
+        }
+        if (!user.getPassword().equals(password)) {
+            return null;
+        }
+        return user.getRoles();
+    }
+
+    public User addUser(User user){
+        EntityManager em = getEntityManager();
+        try{
+            em.getTransaction().begin();
+            em.persist(user);
+            em.getTransaction().commit();
+        }finally{
+            em.close();
+        }
+        return user;
+    }
     
-    User both = new User("user_admin","test");
-    both.addRole("User");
-    both.addRole("Admin");
-    users.put(both.getUserName(),both );
-  }
-  
-  public User getUserByUserId(String id){
-    return users.get(id);
-  }
-  /*
-  Return the Roles if users could be authenticated, otherwise null
-  */
-  public List<String> authenticateUser(String userName, String password){
-    User user = users.get(userName);
-    return user != null && user.getPassword().equals(password) ? user.getRoles(): null;
-  }
-  
+    public List<User> getAllUsers(){
+        EntityManager em = getEntityManager();
+        List<User> users = new ArrayList<>();
+        try{
+            Query query = em.createQuery("SELECT u FROM User u");
+            users = query.getResultList();
+        }finally{
+            em.close();
+        }
+        return users;
+    }
+    
+    public User getUserByUserId(String id){
+        EntityManager em = getEntityManager();
+        User user = null;
+        try{
+            Query query = em.createQuery("SELECT u FROM User u WHERE u.id = :id");
+            query.setParameter("id", Integer.parseInt(id));
+            user = (User) query.getSingleResult();
+        }catch(NoResultException ex){
+            //return null
+        }finally{
+            em.close();
+        }
+        return user;
+    }
+    
+    public User getUserByUserName(String userName){
+        EntityManager em = getEntityManager();
+        User user = null;
+        try{
+            Query query = em.createQuery("SELECT u FROM User u WHERE u.userName = :userName");
+            query.setParameter("userName", userName);
+            user = (User) query.getSingleResult();
+        }catch(NoResultException ex){
+            //return null
+        }finally{
+            em.close();
+        }
+        return user;
+    }
+    
+    public User editUser(User user){
+        EntityManager em = getEntityManager();
+        try{
+            em.getTransaction().begin();
+            em.merge(user);
+            em.getTransaction().commit();
+        }finally{
+            em.close();
+        }
+        return user;
+    }
+    
+    public User deleteUserByID(String id){
+        EntityManager em = getEntityManager();
+        User user = null;
+        try{
+            Query query = em.createQuery("SELECT u FROM User u WHERE u.userName = :id");
+            query.setParameter("id", Integer.parseInt(id));
+            user = (User) query.getSingleResult();
+            em.getTransaction().begin();
+            em.remove(user);
+            em.getTransaction().commit();
+        }finally{
+            em.close();
+        }
+        return user;
+    }
 }

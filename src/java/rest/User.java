@@ -13,7 +13,7 @@ public class User {
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   public String getSomething(){
-    return "{\"message\" : \"This message was delivered via a REST call accesible by only authenticated USERS\"}"; 
+    return "{\"message\" : \"This message was delivered via a REST call accesible by only authenticated USERS\"}";
   }
  
 }

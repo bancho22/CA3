@@ -1,50 +1,74 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-public class User {
-  
-  private String password;  //Pleeeeease dont store me in plain text
-  private String userName;
-  List<String> roles = new ArrayList();
-
-  public User(String userName, String password) {
-    this.userName = userName;
-    this.password = password;
-  }
-  
-  public User(String userName, String password,List<String> roles) {
-    this.userName = userName;
-    this.password = password;
-    this.roles = roles;
-  }
-  
-  public void addRole(String role){
-    roles.add(role);
-  }
+/**
+ *
+ * @author Bancho
+ */
+@Entity
+public class User implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     
-  public List<String> getRoles() {
-   return roles;
-  }
- 
-  public String getPassword() {
-    return password;
-  }
+    private String userName;
+    private String password;
+    
+    @ElementCollection
+    private List<String> roles;
+    
+    public User(){
+        roles = new ArrayList<>();
+    }
 
-  public void setPassword(String password) {
-    this.password = password;
-  }
+    public Integer getId() {
+        return id;
+    }
 
-  public String getUserName() {
-    return userName;
-  }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-  public void setUserName(String userName) {
-    this.userName = userName;
-  }
-  
-  
- 
-          
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
+    
+    public void addRole(String role){
+        roles.add(role);
+    }
+
 }
