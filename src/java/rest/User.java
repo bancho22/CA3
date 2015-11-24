@@ -21,15 +21,5 @@ public class User {
     return "{\"message\" : \"This message was delivered via a REST call accesible by only authenticated USERS\"}";
   }
  
-  @POST
-    @Consumes("application/json")
-    @Produces("application/json")
-    public String addPerson(String json){
-        JsonObject jsonP = new JsonParser().parse(json).getAsJsonObject();
-        User p = JSONConverter.getPersonFromJson(jsonP, false);
-        p = pf.addPerson(p);
-        jsonP = JSONConverter.getJsonFromPerson(p);
-        return jsonP.toString();
-
   
 }
