@@ -10,7 +10,11 @@ angular.module('myApp', [
   'myApp.view2',
   'myApp.view3',
   'myApp.view4',
+<<<<<<< Updated upstream
   //'myApp.view5',
+=======
+  'myApp.view6',
+>>>>>>> Stashed changes
   'myApp.filters',
   'myApp.directives',
   'myApp.factories',
