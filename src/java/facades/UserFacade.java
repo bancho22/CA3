@@ -59,12 +59,12 @@ public class UserFacade {
         return users;
     }
     
-    public User getUserByUserId(String id){
+    public User getUserByUserName(String userName){
         EntityManager em = getEntityManager();
         User user = null;
         try{
-            Query query = em.createQuery("SELECT u FROM User u WHERE u.id = :id");
-            query.setParameter("id", Integer.parseInt(id));
+            Query query = em.createQuery("SELECT u FROM User u WHERE u.userName = :userName");
+            query.setParameter("userName", userName);
             user = (User) query.getSingleResult();
         }catch(NoResultException ex){
             //return null
@@ -74,12 +74,12 @@ public class UserFacade {
         return user;
     }
     
-    public User getUserByUserName(String userName){
+    public User getUserByID(int id){
         EntityManager em = getEntityManager();
         User user = null;
         try{
-            Query query = em.createQuery("SELECT u FROM User u WHERE u.userName = :userName");
-            query.setParameter("userName", userName);
+            Query query = em.createQuery("SELECT u FROM User u WHERE u.id = :id");
+            query.setParameter("id", id);
             user = (User) query.getSingleResult();
         }catch(NoResultException ex){
             //return null
