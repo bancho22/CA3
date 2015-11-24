@@ -30,7 +30,6 @@ public class User {
         p = pf.addPerson(p);
         jsonP = JSONConverter.getJsonFromPerson(p);
         return jsonP.toString();
-        
-    }
+
   
 }

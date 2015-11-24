@@ -12,13 +12,12 @@ angular.module('myApp.view6', ['ngRoute'])
 
 
 .controller('View6Ctrl', function ($http, $scope) {
-          $http({
-            method: 'GET',
-            url: 'api/demoadmin'
-          }).then(function successCallback(res) {
-            $scope.data = res.data.message;
-          }, function errorCallback(res) {
-            $scope.error = res.status + ": "+ res.data.statusText;
-          });
+          $http.get('api/demoadmin')
+            .success(function (data, status, headers, config) {
+              $scope.data = data;
+            })
+            .error(function (data, status, headers, config) {
+              
+             });
 
         });
