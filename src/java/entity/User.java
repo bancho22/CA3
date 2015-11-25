@@ -26,7 +26,7 @@ public class User implements Serializable {
     private Integer id;
     
     private String userName;
-    private String password;
+    private String passwordHash;
     
     @ElementCollection
     private List<String> roles;
@@ -51,12 +51,12 @@ public class User implements Serializable {
         this.userName = userName;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPasswordHash() {
+        return passwordHash;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
     }
 
     public List<String> getRoles() {
