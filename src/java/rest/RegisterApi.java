@@ -40,11 +40,23 @@ public class RegisterApi {
         String hash = PasswordHash.createHash(password);
         u.setPasswordHash(hash);
         u.addRole("User");
+        System.out.println("occured");
         uf.addUser(u);
         JsonObject returnObj = new JsonObject();
         returnObj.addProperty("id", u.getId());
         returnObj.addProperty("userName", u.getUserName());
         return Response.status(Response.Status.OK).entity(returnObj.toString()).type(MediaType.APPLICATION_JSON).build();
     }
+
+//    @POST
+//    @Consumes("application/json")
+//    @Produces("application/json")
+//    public Response registerUser(String json) {
+//        entity.User u = gson.fromJson(json, entity.User.class);
+//        u.addRole("User");
+//        uf.addUser(u);
+//        System.out.println("occured");
+//        return Response.status(Response.Status.OK).build();
+//    }
 
 }

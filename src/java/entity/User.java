@@ -30,6 +30,8 @@ public class User implements Serializable {
     
     @ElementCollection
     private List<String> roles;
+
+    
     
     public User(){
         roles = new ArrayList<>();

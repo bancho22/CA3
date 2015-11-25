@@ -3,30 +3,28 @@
 <!--[if IE 7 ]>    <html lang="en" class="ie7 ielt8"> <![endif]-->
 <!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
-<head>
-<meta charset="utf-8">
-<title>Please log in</title>
-<link href="style.css" rel="stylesheet" type="text/css"/>
+    <head>
+        <meta charset="utf-8">
+        <title>Please sign up</title>
+    </head>
+    <body>
+        <div class="container">
+            <section id="content">
+                <div ng-controller="View7Ctrl">
+                    <form  role="form" ng-submit="post()"  >
+                        <div class="form-group">
+                            <input type="text" style="width:10em;" placeholder="User name" class="form-control"
+                                   ng-model="user.userName">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" style="width:10em;" placeholder="Password" class="form-control"
+                                   ng-model="user.password">
+                        </div>
+                        <button type="submit" class="btn btn-success">Sign up</button>
+                    </form>
+                </div>
 
-</head>
-<body>
-<div class="container">
-	<section id="content">
-		<form action="">
-			<h1>Signup Form</h1>
-			<div>
-				<input type="text" placeholder="Username" required="" id="username" />
-			</div>
-			<div>
-				<input type="password" placeholder="Password" required="" id="password" />
-			</div>
-			<div>
-				<input type="submit" value="Create" />
-				
-			</div>
-		</form><!-- form -->
-		<!-- button -->
-	</section><!-- content -->
-</div><!-- container -->
-</body>
+            </section>
+        </div>
+    </body>
 </html>
