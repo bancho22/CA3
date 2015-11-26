@@ -20,7 +20,7 @@ angular.module('myApp.view6', ['ngRoute'])
 
                         });
 
-                $scope.users = {};
+                $scope.users = [];
 //             var getUsers = function(){
                 $http.get('api/admin/users').success(function (data, status, headers, config) {
                     $scope.users = data;
@@ -31,10 +31,15 @@ angular.module('myApp.view6', ['ngRoute'])
 //             };
                 
                 $scope.deleteUser = function (id) {
-                    alert(id);
+                    
                     $http.delete('api/admin/users/'+ id)
                             .success(function (data, status, headers, config) {
-                                
+                                for(var i = 0; i <$scope.users.length;i++){
+                                    if(id === $scope.users[i].id){
+                                        $scope.users.splice(i,1);
+                                        
+                                    }
+                                }
                             })
                             .error(function (data, status, headers, config) {
 
