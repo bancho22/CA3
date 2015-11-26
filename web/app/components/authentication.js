@@ -69,6 +69,40 @@ angular.module('myApp.security', [])
             });
   };
 
+$scope.logon = function () {
+    $http
+            .post('api/register', $scope.user)
+            .success(function (data, status, headers, config) {
+              $window.sessionStorage.token = data.token;
+              $scope.isAuthenticated = true;
+              var encodedProfile = data.token.split('.')[1];
+              var profile = JSON.parse(url_base64_decode(encodedProfile));
+              $scope.username = profile.username;
+              var roles = profile.roles.split(",");
+              roles.forEach(function (role) {
+                if(role === "Admin"){
+                   $scope.isAdmin =true;
+                 }
+                if(role === "User"){
+                   $scope.isUser = true;
+                 }
+              });
+              $scope.error = null;
+              $location.path("#/view1");
+            })
+            .error(function (data, status, headers, config) {
+              // Erase the token if the user fails to log in
+              delete $window.sessionStorage.token;
+              $scope.isAuthenticated = false;
+              $scope.isAdmin = false;
+              $scope.isUser = false;
+              $scope.username = "";
+              $scope.error = data.error;
+              //$scope.logout();  //Clears an eventual error message from timeout on the inner view
+            });
+  };
+
+
   $rootScope.logout = function () {
     $scope.isAuthenticated = false;
     $scope.isAdmin = false;
