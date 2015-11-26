@@ -108,7 +108,7 @@ public class UserFacade {
         EntityManager em = getEntityManager();
         User user = null;
         try{
-            Query query = em.createQuery("SELECT u FROM User u WHERE u.userName = :id");
+            Query query = em.createQuery("SELECT u FROM User u WHERE u.id = :id");
             query.setParameter("id", Integer.parseInt(id));
             user = (User) query.getSingleResult();
             em.getTransaction().begin();

@@ -1,5 +1,26 @@
-<h3>This is the partial for view 5.</h3>
+<h3>This is the partial for all users.</h3>
 <div>
   <p>Data from server (Admins only) <b style="color: darkblue">{{data.message}}</b></p>
   <p>Server Time: <b style="color: darkblue">{{data.serverTime}}</b></p>
 </div>
+<table class="table" ng-controller="View6Ctrl">
+    <thead>
+        <tr>
+          <th>Name<th/>  
+           
+           </tr>   
+          </thead>
+          <tbody>
+              <tr ng-repeat="user in users">   
+                  <th>{{user.userName}}</th>
+                  <th><button ng-click="deleteUser(user.id)" >Delete</button></th>
+<!--                  <th ng-model="user.id" hidden=""></th>-->
+              
+             </tr> 
+          </tbody>  
+        
+    
+</table>
+    
+
+
