@@ -14,21 +14,21 @@ angular.module('myApp.view7', ['ngRoute'])
                 this.msgFromFactory = InfoFactory.getInfo();
                 this.msgFromService = InfoService.getInfo();
 
-         
-
-$scope.post=function(){
 
 
-                $http({method: 'POST', url: 'api/register',
-                    contentType: "application/json", data: JSON.stringify($scope.user)}).
-                        success(function (data, status, headers, config) {
-                            
+                $scope.post = function () {
 
-                        }).
-                        error(function (data, status, headers, config) {
 
-                        });
-                
+                    $http({method: 'POST', url: 'api/register',
+                        contentType: "application/json", data: JSON.stringify($scope.user)}).
+                            success(function (data, status, headers, config) {
+
+
+                            }).
+                            error(function (data, status, headers, config) {
+
+                            });
+
                 };
 
             }]);
