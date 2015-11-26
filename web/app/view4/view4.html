@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table" ng-show="status">
     <thead>
         <tr>
             <th>Code</th>
@@ -16,3 +16,7 @@
         </tr>
     </tbody>
 </table>
+
+<div ng-show="status !== true">
+    {{ status }}
+</div>

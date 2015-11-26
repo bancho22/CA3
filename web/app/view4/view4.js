@@ -20,6 +20,7 @@ angular.module('myApp.view4', ['ngRoute'])
 
 
     $scope.rates = [];
+    $scope.status = "Connecting...";
     
     $http({
         method: "GET",
@@ -27,9 +28,10 @@ angular.module('myApp.view4', ['ngRoute'])
     })
             .success(function(data, status, headers, config){
                 $scope.rates = data;
+                $scope.status = true;
             })
             .error(function(){
-                alert("A problem occured while fetching data.");
+                $scope.status = "Connection failed";
             });
  
 });
