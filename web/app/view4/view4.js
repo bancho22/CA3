@@ -10,12 +10,26 @@ angular.module('myApp.view4', ['ngRoute'])
 }])
 
 .controller('View4Ctrl', function($http,$scope) {
-  $http.get('api/demouser')
-            .success(function (data, status, headers, config) {
-              $scope.data = data;
+//  $http.get('api/demouser')
+//            .success(function (data, status, headers, config) {
+//              $scope.data = data;
+//            })
+//            .error(function (data, status, headers, config) {
+//              
+//             });
+
+
+    $scope.rates = [];
+    
+    $http({
+        method: "GET",
+        url: "api/currency/dailyrates"
+    })
+            .success(function(data, status, headers, config){
+                $scope.rates = data;
             })
-            .error(function (data, status, headers, config) {
-              
-             });
+            .error(function(){
+                alert("A problem occured while fetching data.");
+            });
  
 });
