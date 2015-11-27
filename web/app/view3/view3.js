@@ -29,7 +29,7 @@ angular.module('myApp.view3', ['ngRoute'])
                 $scope.getCompany = function () {
                     return $http({method: 'GET', url: 'http://cvrapi.dk/api?search=' + $scope.cvr + '&country=' + $scope.country,
                         contentType: "application/json"}).success(function (data, status, headers, config) {
-                        alert("in");
+                        
                         $scope.output = data;
                         
 
