@@ -12,13 +12,13 @@ angular.module('myApp.view6', ['ngRoute'])
 
 
         .controller('View6Ctrl', ['$http', '$scope', function ($http, $scope) {
-                $http.get('api/demoadmin')
-                        .success(function (data, status, headers, config) {
-                            $scope.data = data;
-                        })
-                        .error(function (data, status, headers, config) {
-
-                        });
+//                $http.get('api/demoadmin')
+//                        .success(function (data, status, headers, config) {
+//                            $scope.data = data;
+//                        })
+//                        .error(function (data, status, headers, config) {
+//
+//                        });
 
                 $scope.users = [];
 //             var getUsers = function(){

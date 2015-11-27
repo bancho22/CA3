@@ -41,8 +41,9 @@ public class CurrencyApi {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("dailyrates")
     public Response getTodaysRates(){
-        Calendar today = Calendar.getInstance(TimeZone.getTimeZone("Europe/Copenhagen"));
-        List<CurrencyRate> rates = cf.getCurrencyRatesByDate(today.getTime());
+        Calendar yesterday = Calendar.getInstance(TimeZone.getTimeZone("Europe/Copenhagen"));
+        yesterday.add(Calendar.DATE, -1);
+        List<CurrencyRate> rates = cf.getCurrencyRatesByDate(yesterday.getTime());
         JsonArray ratesJson = new JsonArray();
         for (CurrencyRate rate : rates) {
             ratesJson.add(new JsonParser().parse(gson.toJson(rate)));

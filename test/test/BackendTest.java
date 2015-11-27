@@ -11,9 +11,6 @@ import static com.jayway.restassured.RestAssured.defaultParser;
 import static com.jayway.restassured.RestAssured.given;
 import com.jayway.restassured.parsing.Parser;
 import static com.jayway.restassured.path.json.JsonPath.from;
-//import org.eclipse.jetty.server.Server;
-//import org.eclipse.jetty.servlet.ServletContextHandler;
-//import org.eclipse.jetty.servlet.ServletHolder;
 import static org.hamcrest.Matchers.equalTo;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -29,32 +26,15 @@ import rest.ApplicationConfig;
  */
 public class BackendTest {
 
-//    static Server server;
 
-    public BackendTest() {
-        baseURI = "http://localhost:8082";
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+        baseURI = "http://localhost:8084/CA3";
         defaultParser = Parser.JSON;
         basePath = "/api";
     }
 
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-//        server = new Server(8082);
-//        ServletHolder servletHolder = new ServletHolder(org.glassfish.jersey.servlet.ServletContainer.class);
-//        servletHolder.setInitParameter("javax.ws.rs.Application", ApplicationConfig.class.getName());
-//        ServletContextHandler contextHandler = new ServletContextHandler(ServletContextHandler.SESSIONS);
-//        contextHandler.setContextPath("/");
-//        contextHandler.addServlet(servletHolder, "/api/*");
-//        server.setHandler(contextHandler);
-//        server.start();
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-//        server.stop();
-//        //waiting for all the server threads to terminate so we can exit gracefully
-//        server.join();
-    }
 
     @Test
     public void LoginWrongUsername() {
@@ -86,7 +66,7 @@ public class BackendTest {
         //Successful login
         given().
                 contentType("application/json").
-                body("{'username':'user','password':'test'}").
+                body("{'username':'bancho','password':'1234'}").
                 when().
                 post("/login").
                 then().
@@ -109,7 +89,7 @@ public class BackendTest {
         //First, make a login to get the token for the Authorization, saving the response body in String json
         String json = given().
                 contentType("application/json").
-                body("{'username':'user','password':'test'}").
+                body("{'username':'kiki','password':'1234'}").
                 when().
                 post("/login").
                 then().

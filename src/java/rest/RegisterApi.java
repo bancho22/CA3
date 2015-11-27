@@ -40,7 +40,6 @@ public class RegisterApi {
         String hash = PasswordHash.createHash(password);
         u.setPasswordHash(hash);
         u.addRole("User");
-        System.out.println("occured");
         uf.addUser(u);
         JsonObject returnObj = new JsonObject();
         returnObj.addProperty("id", u.getId());
