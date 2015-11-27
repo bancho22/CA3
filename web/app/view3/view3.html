@@ -1,17 +1,57 @@
 <h3>This is the partial for view 3.</h3>
 
 
-<div  ng-controller="View3Ctrl ">
+<div  ng-controller="View3Ctrl">
     <form role="form" ng-submit="getCompany()" >
-CVR:<br>
-<input type="text" name="cvr" ng-model="cvr">
-<select  name="country" ng-model="country">
-  <option value="DK">Denmark</option>
-  <option value="NO">Norway</option>
-  
-</select>
-    <button type="submit" class="btn btn-success">Search</button>
+        CVR:<br>
+        <input type="text" name="cvr" ng-model="cvr">
+        <select  name="country" ng-model="country" >
+            <option selected="selected" value="DK" >Denmark</option>
+            <option value="NO">Norway</option></select>
+        <button type="submit" class="btn btn-success">Search</button>
 
-</form>
+
+
+    </form>
+    <pre style="background-color: white; border: white" >
+    <b>Name:</b>                   {{output.name}} <br>
+    <b>Address:</b>                {{output.address}}<br>
+    <b>ZIP:</b>                    {{output.zipcode}}<br>
+    <b>City:</b>                   {{output.city}}<br>
+    <b>Phone:</b>                  {{output.phone}}<br>
+    <b>Email:</b>                  {{output.email}}<br>
+    <b>Established:</b>            {{output.startdate}}<br>
+    <b>Employees:</b>              {{output.employees}}<br>
+    <b>Industry Description:</b>   {{output.industrydesc}}<br>
+    <b>Code:</b>                   {{output.companycode}}<br>
+    <b>Description:</b>            {{output.companydesc}}<br>
+    <b>Owners:</b>                 {{output.owners}}<br>
     
+    </pre>
+    <div style="width: 25em ; border-left: 12em">
+    <b>Units:</b> <uib-accordion>
+        <uib-accordion-group ng-repeat="unit in output.productionunits" >
+            <uib-accordion-heading>
+                {{unit.name}}
+            </uib-accordion-heading>
+            <ul>
+                <li><b>PNO:</b> {{unit.pno}} </li>
+                <li><b>Address:</b> {{unit.address}} </li>
+                <li><b>Zip:</b> {{unit.zipcode}} </li>
+                <li><b>City:</b> {{unit.city}} </li>
+                <li><b>Phone:</b> {{unit.phone}} </li>
+                <li><b>Email:</b> {{unit.email}} </li>
+                <li><b>Established:</b> {{unit.startadte}} </li>
+                <li><b>Employees:</b> {{unit.empolyees}} </li>
+                <li><b>Email:</b> {{unit.email}} </li>
+      
+                
+                    
+               
+                </ul>
+        </uib-accordion-group>
+    </uib-accordion>
+</div>
+
+
 </div>

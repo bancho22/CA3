@@ -15,18 +15,19 @@ angular.module('myApp.view7', ['ngRoute'])
                 this.msgFromService = InfoService.getInfo();
 
 
-
+                
                 $scope.post = function () {
 
 
                     $http({method: 'POST', url: 'api/register',
                         contentType: "application/json", data: JSON.stringify($scope.user)}).
                             success(function (data, status, headers, config) {
-
+                                 alert($scope.user.userName + " has sucessefully registered!");
+                                
 
                             }).
                             error(function (data, status, headers, config) {
-
+                                    "Something weng wrong try again."
                             });
 
                 };
