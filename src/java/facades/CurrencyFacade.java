@@ -5,6 +5,7 @@
  */
 package facades;
 
+import deploy.DeploymentConfiguration;
 import entity.CurrencyRate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,7 +24,7 @@ public class CurrencyFacade {
     private EntityManagerFactory emf;
 
     public CurrencyFacade() {
-        emf = Persistence.createEntityManagerFactory("CA3PU");
+        emf = Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME);
     }
 
     private EntityManager getEntityManager() {

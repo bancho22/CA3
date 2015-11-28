@@ -1,5 +1,6 @@
 package facades;
 
+import deploy.DeploymentConfiguration;
 import entity.User;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -17,7 +18,7 @@ public class UserFacade {
     private EntityManagerFactory emf;
 
     public UserFacade() {
-        emf = Persistence.createEntityManagerFactory("CA3PU");
+        emf = Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME);
     }
 
     private EntityManager getEntityManager() {
