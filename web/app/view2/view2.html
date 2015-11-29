@@ -4,15 +4,21 @@
     <p>I was responsible for creating database tables for the logging-in and also changing the back-end log-in code to use those tables. For the password hashing, I found some code online which I use. I use the method PasswordHash.createHash(password) to generate a hash for the given password, using random salt. The return value is a string which contains a really long string. This string is made up of 3 parts, each separated by a semicolon. The first part is a number (1000 in our case), which indicates the iterations when it comes to the algorithm, used for the hashing. The second part is the salt value and the third one – the actual hash. Therefore, the value passwordHash which I store in the database contains both the salt for the password and the actual hash and can be used to successfully check the validity of the password.</p>
     <h2>OpenShift problem - Bancho</h2>
     <p>When uploading the war file to OpenShift, we encountered a problem which we had never seen before. Once the application was deployed and we tried to access the link, we would get a 404 not found (). We went through all the deployment steps again, but to no avail. Next, using PuTTy we accessed the server logs on OpenShift and discovered that the following exception is being thrown during server start-up:
-ClassNotFoundException: org.apache.catalina.ha.ClusterRuleSet. We searched for a solution online, but once again, to no avail. (e.g. https://access.redhat.com/solutions/393213 – How is this a solution?!).</p>
+        ClassNotFoundException: org.apache.catalina.ha.ClusterRuleSet. We searched for a solution online, but once again, to no avail. (e.g. https://access.redhat.com/solutions/393213 – How is this a solution?!).</p>
     <h2>The Admin (All Users) Page</h2>
     <p>Firstly, I included the registerAPI giving users the ability to create new account right away.
- Secondly I helped for and did some features from the second question (mainly in the javascript file view3.js).
- Last but not least I added a new GET-REST service(api/admin/users) providing information
- as a JSON LIst about all the users in the system. This can be seen only by the Admin role
- Моreover, I have added the DELETE-REsT service(api/admin/users/:id) which deletes a user
- with the given id.
- In my opinion we worked together really successful, we were cooperative and every time we had a 
- problem we found the solution to it together.Looking at the work we all have done I can savely say 
- that we all learned a lot from this CA.</p>
+        Secondly I helped for and did some features from the second question (mainly in the javascript file view3.js).
+        Last but not least I added a new GET-REST service(api/admin/users) providing information
+        as a JSON LIst about all the users in the system. This can be seen only by the Admin role
+        Моreover, I have added the DELETE-REsT service(api/admin/users/:id) which deletes a user
+        with the given id.
+        In my opinion we worked together really successful, we were cooperative and every time we had a 
+        problem we found the solution to it together.Looking at the work we all have done I can savely say 
+        that we all learned a lot from this CA.</p>
+    <h2>Using Open Data, AngularJS and Cool Controls-Martin </h2>
+    <p>
+        (Responsible for task 2, and part of the task 1 )<br><br>
+
+        My first responsibility was to make 5 different views together with restrictions to what kind of users it should be available. Afterwards I continued to the view number 3 where we show data about concrete company, searched by CVR number. To get the results, I $scope data from the html file and send them through getCompany function () to the given cvrapi.dk from where we get a JSon object which we have stored in output{}. During the process of sending request we have been challenged with a header request problem which was later solved according to the guidance on a Fronter. As a next step I made an view3.html file actually display the data that we have chosen as most important ones together with a “production units” which are displayed in a accordion as stated in an assignment.
+        I can definitely say that during this CA I had an opportunity to test previously gained knowledge from semester (as angular, api, javascript) in a very efficient way. As I saw the whole process,  I have to say that each member of the group actively participated in the process, and if somebody needed help, nobody hesitated to give a hand and practice some pair-programming, which we definitely see as a good coding experience. Thanks to this fact we did not have any problems between members and work on the project was smooth.</p>
 </div>
